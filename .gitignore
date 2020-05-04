@@ -2,6 +2,7 @@
 *.slo
 *.lo
 *.o
+*.obj
 
 # VS Files
 Debug
@@ -11,3 +12,7 @@ Release
 *.ncb
 ipch
 *sdf
+
+
+# Executable
+*.exe
