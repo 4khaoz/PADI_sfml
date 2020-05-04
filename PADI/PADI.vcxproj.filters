@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Menu">
+      <UniqueIdentifier>{6f4f174c-5f81-48e1-9c92-f4c0bde3d3d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menu">
+      <UniqueIdentifier>{d911543d-49ab-43fa-9b4e-8fc44d08769b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UserInterface">
+      <UniqueIdentifier>{116967e1-bdf2-472d-91c2-2b24c079bfa8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Gameplay">
+      <UniqueIdentifier>{c10895e4-6976-4d86-82be-8ba356748d5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Gameplay">
+      <UniqueIdentifier>{0c8ee126-6895-452d-888c-6f1df5ea9e26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UserInterface">
+      <UniqueIdentifier>{34e37ca8-18e8-4fc8-9722-e0c64dcda44a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\MainMenu.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\StateManager.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\GameInstance.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay\Player.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay\Actor.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay\Character.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Button.cpp">
+      <Filter>Source Files\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay\Map.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay\Projectile.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay\Enemy.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\ProgressBar.cpp">
+      <Filter>Source Files\UserInterface</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\MainMenu.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Button.h">
+      <Filter>Header Files\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\StateManager.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Menu.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay\Actor.h">
+      <Filter>Header Files\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay\Player.h">
+      <Filter>Header Files\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay\Character.h">
+      <Filter>Header Files\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\GameInstance.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay\Map.h">
+      <Filter>Header Files\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay\Enemy.h">
+      <Filter>Header Files\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay\Projectile.h">
+      <Filter>Header Files\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\ProgressBar.h">
+      <Filter>Header Files\UserInterface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\res\placeholder.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Resources\set.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Resources\projectile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\Resources\astron_boy.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+  </ItemGroup>
+</Project>

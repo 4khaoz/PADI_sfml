@@ -1,0 +1,13 @@
+# Object Files
+*.slo
+*.lo
+*.o
+
+# VS Files
+Debug
+Release
+*.suo
+*.user
+*.ncb
+ipch
+*sdf
