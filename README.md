@@ -1,13 +1,15 @@
 # SoSe2020_Padi07
+# Padiro
 
-**2D Boss Battle RPG**
-
+## Details
+Padiro ist ein 2D Boss Battle RPG.
 Der Spieler kämpft in einer Arena gegen einen Boss in einem bullethell ähnlichem Scenario.
 
-Features:
-- Singleplayer
-- Menu (incoming)
-- 3 Level (2 more incoming)
-- Difficulty (incoming)
-- Character Development (incoming)
-- Save/Load Game Progress (incoming)
+## Features
+- Singleplayer (C)
+- Menu (incoming) (C)
+- 3 Level (2 more incoming) (C)
+- Difficulty (incoming) (C)
+- Character Development (incoming) (A)
+- Save/Load Game Progress (incoming) (C)
+- Sound (incoming) (C)
