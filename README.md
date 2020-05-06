@@ -1,6 +1,7 @@
 # SoSe2020_Padi07
 
 **2D Boss Battle RPG**
+
 Der Spieler kämpft in einer Arena gegen einen Boss in einem bullethell ähnlichem Scenario.
 
 Features:
