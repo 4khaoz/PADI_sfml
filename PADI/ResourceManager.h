@@ -14,7 +14,10 @@ public:
 
 	sf::Texture getTextureByName(std::string name);
 
+	sf::Font* getFont() { return font; }
+
 private:
+	sf::Font* font;
 	const std::string str_settings = "settings.cfg";
 	const std::string str_savegame = "save.cfg";
 

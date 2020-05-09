@@ -4,6 +4,7 @@ Character::Character(sf::Vector2f spawn)
 	: Actor(spawn), map(map)
 {
 	bAttacking = false;
+	bAlive = true;
 }
 
 Character::~Character()
@@ -26,4 +27,8 @@ void Character::Draw(sf::RenderTarget& target)
 void Character::TakeDamage()
 {
 	Health_Current = fClamp(Health_Current-1, 0, Health_Max);
+	if (Health_Current <= 0)
+	{
+		bAlive = false;
+	}
 }

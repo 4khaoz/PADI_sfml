@@ -21,8 +21,11 @@ public:
 	float GetHealthMax() { return Health_Max; }
 	float GetHealthPercentage() { return Health_Current / Health_Max; }
 
+	bool isAlive() { return bAlive; }
+
 protected:
 	bool bAttacking;
+	bool bAlive;
 	Map& map;
 	sf::Image img;
 

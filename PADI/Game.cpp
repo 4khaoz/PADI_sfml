@@ -17,6 +17,7 @@ Game::Game()
 
 Game::~Game()
 {
+	delete window;
 	delete sm;
 }
 

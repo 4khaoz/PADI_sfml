@@ -1,6 +1,8 @@
 #include "ProgressBar.h"
+#include "../ResourceManager.h"
 
-ProgressBar::ProgressBar(sf::Vector2f position, sf::Vector2f size, sf::Color color, float maxValue)
+ProgressBar::ProgressBar(sf::Vector2f position, sf::Vector2f size, sf::Color color, float maxValue, bool bShowNumbers)
+	: maxValue(maxValue), bShowNumbers(bShowNumbers)
 {
 	PBOuter.setPosition(position);
 	PBOuter.setSize(size);
@@ -10,10 +12,7 @@ ProgressBar::ProgressBar(sf::Vector2f position, sf::Vector2f size, sf::Color col
 	PBInner.setSize(size);
 	PBInner.setFillColor(color);
 
-	if (!font.loadFromFile("..\\Resources\\astron_boy.ttf"))
-		return;
-
-	PBText.setFont(font);
+	PBText.setFont(*g_Res->getFont());
 	PBText.setFillColor(sf::Color::Black);
 	PBText.setCharacterSize(20);
 	PBText.setPosition(
@@ -25,8 +24,6 @@ ProgressBar::ProgressBar(sf::Vector2f position, sf::Vector2f size, sf::Color col
 		PBText.getGlobalBounds().width / 2,
 		PBText.getGlobalBounds().height / 2
 	);
-
-	this->maxValue = maxValue;
 }
 
 ProgressBar::~ProgressBar()
@@ -44,13 +41,18 @@ void ProgressBar::Update(const int val)
 		)
 	);
 
-	PBStr = std::to_string(val) + " / " + std::to_string(static_cast<int>(maxValue));
-	PBText.setString(PBStr);
+	if (bShowNumbers)
+	{
+		PBStr = std::to_string(val) + " / " + std::to_string(static_cast<int>(maxValue));
+		PBText.setString(PBStr);
+	}
 }
 
 void ProgressBar::Draw(sf::RenderTarget& target)
 {
 	target.draw(this->PBOuter);
 	target.draw(this->PBInner);
-	target.draw(this->PBText);
+
+	if (bShowNumbers)
+		target.draw(this->PBText);
 }

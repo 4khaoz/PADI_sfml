@@ -3,20 +3,28 @@
 #include "Player.h"
 
 Projectile::Projectile(sf::Vector2f spawn, sf::Vector2f direction, float speed, Actor& instigator) 
-	: Actor(spawn), direction(direction), instigator(instigator)
+	: Actor(spawn), direction(direction), instigator(instigator), speed(speed)
 {
-	this->speed = speed;
-
-	if (!texture.loadFromFile("..\\Resources\\projectile.png"))
-	{
-		return;
-	}
+	texture = g_Res->getTextureByName("projectile");
 
 	sprite.setTexture(texture);
-	sprite.setScale(
-		(float) 50 / sprite.getTexture()->getSize().x,
-		(float) 50 / sprite.getTexture()->getSize().y
-	);
+
+	if (dynamic_cast<Enemy*>(&instigator))
+	{
+		sprite.rotate(-180);
+		sprite.setScale(
+			(float)150 / sprite.getTexture()->getSize().x,
+			(float)70 / sprite.getTexture()->getSize().y
+		);
+	}
+	else
+	{
+		sprite.setScale(
+			(float) 50 / sprite.getTexture()->getSize().x,
+			(float) 20 / sprite.getTexture()->getSize().y
+		);
+	}
+	
 	sprite.setOrigin(
 		sprite.getTexture()->getSize().x / 2,
 		sprite.getTexture()->getSize().y / 2

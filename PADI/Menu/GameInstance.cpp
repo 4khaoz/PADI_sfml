@@ -1,13 +1,13 @@
 #include "GameInstance.h"
+#include "StateManager.h"
 
 GameInstance::GameInstance(StateManager& sm, sf::RenderWindow* window)
 	: Menu(sm, window)
 {
 	map.setPosition(0, 0);
-	map.setOrigin(1280 / 2, 720 / 2);
 
-	view.setCenter(0, 0);
-	view.setSize(sf::Vector2f(1280, 720));
+	view.setCenter(WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	view.setSize(sf::Vector2f(WIN_WIDTH, WIN_HEIGHT));
 
 	window->setView(view);
 
@@ -15,17 +15,19 @@ GameInstance::GameInstance(StateManager& sm, sf::RenderWindow* window)
 	enemy = new Enemy(map.getEnemyspawn());
 
 	enemy_HPBar = new ProgressBar(
-		sf::Vector2f(200, 300),
+		sf::Vector2f(800, 670),
 		sf::Vector2f(400, 30),
 		sf::Color::Red,
-		enemy->GetHealthMax()
+		enemy->GetHealthMax(),
+		false
 	);
 
 	player_HPBar = new ProgressBar(
-		sf::Vector2f(-600, 300),
+		sf::Vector2f(80, 670),
 		sf::Vector2f(400, 30),
 		sf::Color::Green,
-		player->GetHealthMax()
+		player->GetHealthMax(),
+		false
 	);
 }
 
@@ -41,6 +43,9 @@ GameInstance::~GameInstance()
 
 void GameInstance::HandleEvents()
 {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		sm.PopMenu();
+
 	player->HandleEvents();
 	enemy->HandleEvents();
 	if (player->isCharacterAttacking())
@@ -73,7 +78,7 @@ void GameInstance::Update(const float& dt)
 		}
 
 		// Remove Projectile if out of bounds
-		if (it->getPosition().x > 650 || it->getPosition().x < -650)
+		if (it->getPosition().x > WIN_WIDTH || it->getPosition().x < 0)
 		{
 			projectiles.erase(std::remove(projectiles.begin(), projectiles.end(), it), projectiles.end());
 		}
@@ -88,6 +93,7 @@ void GameInstance::Draw()
 	// Draw Background
 	window->draw(map);
 
+	// Draw Actors
 	player->Draw(*window);
 	enemy->Draw(*window);
 	for (auto it : projectiles)
@@ -95,6 +101,7 @@ void GameInstance::Draw()
 		it->Draw(*window);
 	}
 
+	// Draw User Interface
 	enemy_HPBar->Draw(*window);
 	player_HPBar->Draw(*window);
 }

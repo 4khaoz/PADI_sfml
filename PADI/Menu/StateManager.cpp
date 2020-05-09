@@ -4,12 +4,16 @@
 StateManager::StateManager(sf::RenderWindow* win)
 	: window { win }
 {
-	//PushMenu(new MainMenu(*this, window));
-	PushMenu(new GameInstance(*this, window));
+	PushMenu(new MainMenu(*this, window));
 }
 
 StateManager::~StateManager()
 {
+	while (!states.empty())
+	{
+		delete states.top();
+		states.pop();
+	}
 }
 
 void StateManager::PushMenu(Menu* menu)
@@ -32,15 +36,30 @@ void StateManager::ChangeMenu(Menu* menu)
 
 void StateManager::HandleEvents()
 {
-	states.top()->HandleEvents();
+	if (!states.empty())
+		states.top()->HandleEvents();
 }
 
 void StateManager::Update(const float& dt)
 {
-	states.top()->Update(dt);
+	if (!states.empty())
+	{
+		states.top()->Update(dt);
+
+		if (states.top()->getQuit())
+		{
+			delete states.top();
+			states.pop();
+		}
+	}
+	else
+	{
+		window->close();
+	}
 }
 
 void StateManager::Draw()
 {
-	states.top()->Draw();
+	if (!states.empty())
+		states.top()->Draw();
 }

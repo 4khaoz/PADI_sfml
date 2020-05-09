@@ -12,6 +12,7 @@ public:
 	virtual void Draw(sf::RenderTarget& target);
 
 private:
+	float fAttackTimer;
 	sf::Clock clock;
 	sf::Vector2f direction;
 };

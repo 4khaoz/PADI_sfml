@@ -24,6 +24,10 @@ Enemy::Enemy(sf::Vector2f spawn)
 
 	Health_Max = 100;
 	Health_Current = Health_Max;
+
+	srand((unsigned int)time(NULL));
+
+	fAttackTimer = float(rand()) / float((RAND_MAX) * 5) + 1.f;
 }
 
 Enemy::~Enemy()
@@ -36,12 +40,12 @@ void Enemy::HandleEvents()
 
 void Enemy::Update(const float& dt)
 {
-	if (sprite.getPosition().y + 150.f > 280)
+	if (sprite.getPosition().y + 100 > WIN_HEIGHT)
 	{
 		direction = sf::Vector2f(0, -1);
 	}
 
-	if (sprite.getPosition().y - 150.f < -300)
+	if (sprite.getPosition().y < 0)
 	{
 		direction = sf::Vector2f(0, 1);
 	}
@@ -52,8 +56,9 @@ void Enemy::Update(const float& dt)
 	{
 		bAttacking = false;
 	}
-	if (!bAttacking && clock.getElapsedTime().asSeconds() > 2.f)
+	if (!bAttacking && clock.getElapsedTime().asSeconds() > fAttackTimer)
 	{
+		fAttackTimer = float(rand()) / float((RAND_MAX) * 5) + 1.f;
 		bAttacking = true;
 		clock.restart();
 	}

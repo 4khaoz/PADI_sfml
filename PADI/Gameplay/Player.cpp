@@ -26,7 +26,7 @@ Player::Player(sf::Vector2f spawn)
 	);
 
 	MovementSpeed = 250.f;
-	Health_Max = 10;
+	Health_Max = 3;
 	Health_Current = Health_Max;
 }
 
@@ -63,14 +63,14 @@ void Player::Draw(sf::RenderTarget& target)
 
 void Player::CheckBorders()
 {
-	if (sprite.getPosition().x < -608)
-		sprite.setPosition(-608, sprite.getPosition().y);
-	if (sprite.getPosition().x > 608)
-		sprite.setPosition(608, sprite.getPosition().y);
-	if (sprite.getPosition().y < -340)
-		sprite.setPosition(sprite.getPosition().x, -340);
-	if (sprite.getPosition().y > 250)
-		sprite.setPosition(sprite.getPosition().x, 250);
+	if (sprite.getPosition().x < 0)
+		sprite.setPosition(0, sprite.getPosition().y);
+	if (sprite.getPosition().x > WIN_WIDTH)
+		sprite.setPosition(WIN_WIDTH, sprite.getPosition().y);
+	if (sprite.getPosition().y < 0)
+		sprite.setPosition(sprite.getPosition().x, 0);
+	if (sprite.getPosition().y > WIN_HEIGHT - 112)
+		sprite.setPosition(sprite.getPosition().x, WIN_HEIGHT - 112);
 }
 
 sf::Vector2f Player::MovementInput()

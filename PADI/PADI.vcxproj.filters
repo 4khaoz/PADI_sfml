@@ -139,6 +139,9 @@
     <Image Include="..\Resources\projectile.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\Resources\background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\Resources\astron_boy.ttf">

@@ -164,6 +164,7 @@
     <ClInclude Include="UserInterface\ProgressBar.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\Resources\background.png" />
     <Image Include="..\Resources\projectile.png" />
     <Image Include="..\Resources\set.png" />
     <Image Include="..\res\placeholder.jpg" />

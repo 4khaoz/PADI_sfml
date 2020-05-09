@@ -9,7 +9,8 @@ public:
 		sf::Vector2f position,
 		sf::Vector2f size,
 		sf::Color color,
-		float maxValue
+		float maxValue,
+		bool bShowNumbers
 	);
 	~ProgressBar();
 
@@ -17,6 +18,7 @@ public:
 	void Draw(sf::RenderTarget& target);
 
 private:
+	bool bShowNumbers;
 	sf::Font font;
 	float maxValue;
 	std::string PBStr;
