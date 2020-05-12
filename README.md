@@ -6,10 +6,15 @@ Padiro ist ein 2D Boss Battle RPG.
 Der Spieler kämpft in einer Arena gegen einen Boss in einem bullethell ähnlichem Scenario.
 
 ## Features
+Completed:
 - Singleplayer (C)
-- Menu (incoming) (C)
-- 3 Level (2 more incoming) (C)
-- Difficulty (incoming) (C)
-- Character Development (incoming) (A)
-- Save/Load Game Progress (incoming) (C)
-- Sound (incoming) (C)
+- Menu (C)
+
+Work-in-Progress:
+- Sound (C)
+- Difficulty (C)
+- 3 Level (C)
+
+Optional:
+- Save/Load Game Progress (C)
+- Character Development (A)
