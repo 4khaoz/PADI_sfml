@@ -15,7 +15,7 @@ public:
 
 	virtual bool isCharacterAttacking() { return bAttacking; }
 
-	void TakeDamage();
+	virtual void TakeDamage();
 
 	float GetHealth() { return Health_Current; }
 	float GetHealthMax() { return Health_Max; }
@@ -28,6 +28,7 @@ protected:
 	bool bAlive;
 	Map& map;
 	sf::Image img;
+	sf::Sound sound;
 
 	float Health_Current;
 	float Health_Max;

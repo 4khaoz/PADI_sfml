@@ -11,6 +11,15 @@ enum class button_state
 class Button
 {
 public:
+	/**
+	@param pos Position
+	@param size Size
+	@param text Text
+	@param textSize TextSize
+	@param idle Idle Color
+	@param hover Hover Color
+	@param clicked Click Color
+	*/
 	Button(
 		sf::Vector2f pos,
 		sf::Vector2f size,
@@ -24,6 +33,7 @@ public:
 
 	void Update(const sf::Vector2f pos);
 	void Draw(sf::RenderTarget& target);
+	void SetText(std::string str);
 
 	const bool isPressed() const;
 

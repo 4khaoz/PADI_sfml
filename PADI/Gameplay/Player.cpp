@@ -25,8 +25,11 @@ Player::Player(sf::Vector2f spawn)
 		sprite.getTexture()->getSize().y / 2
 	);
 
+	sound.setBuffer(*g_Res->getSoundByName("ahh"));
+	sound.setVolume(100);
+
 	MovementSpeed = 250.f;
-	Health_Max = 3;
+	Health_Max = 5;
 	Health_Current = Health_Max;
 }
 
@@ -59,6 +62,14 @@ void Player::Update(const float& dt)
 void Player::Draw(sf::RenderTarget& target)
 {
 	target.draw(sprite);
+}
+
+void Player::TakeDamage()
+{
+	Character::TakeDamage();
+	sound.play();
+	if (sound.getStatus() == sf::Sound::Status::Playing)
+		std::cout << "player sound" << std::endl;
 }
 
 void Player::CheckBorders()

@@ -5,20 +5,17 @@
 Projectile::Projectile(sf::Vector2f spawn, sf::Vector2f direction, float speed, Actor& instigator) 
 	: Actor(spawn), direction(direction), instigator(instigator), speed(speed)
 {
-	texture = g_Res->getTextureByName("projectile");
-
-	sprite.setTexture(texture);
-
 	if (dynamic_cast<Enemy*>(&instigator))
 	{
-		sprite.rotate(-180);
+		sprite.setTexture(*g_Res->getTextureByName("kappa"));
 		sprite.setScale(
-			(float)150 / sprite.getTexture()->getSize().x,
-			(float)70 / sprite.getTexture()->getSize().y
+			(float)70 / sprite.getTexture()->getSize().x,
+			(float)90 / sprite.getTexture()->getSize().y
 		);
 	}
 	else
 	{
+		sprite.setTexture(*g_Res->getTextureByName("projectile"));
 		sprite.setScale(
 			(float) 50 / sprite.getTexture()->getSize().x,
 			(float) 20 / sprite.getTexture()->getSize().y

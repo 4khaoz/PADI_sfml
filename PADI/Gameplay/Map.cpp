@@ -20,7 +20,7 @@ bool Map::LoadMap(
 	unsigned int height)
 {
 	// Load tileset
-	m_tileset = g_Res->getTextureByName("map");
+	m_tileset = *g_Res->getTextureByName("map");
 		
 	// Vertex Array
 	vertices.setPrimitiveType(sf::Quads);

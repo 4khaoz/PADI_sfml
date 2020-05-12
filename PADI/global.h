@@ -29,3 +29,11 @@ inline float fClamp(const float val, const float min, const float max)
 
 	return val;
 }
+
+inline int iClamp(const int val, const int min, const int max)
+{
+	if (val < min) return min;
+	if (val > max) return max;
+
+	return val;
+}

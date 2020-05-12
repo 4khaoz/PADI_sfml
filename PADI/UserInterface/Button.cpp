@@ -20,7 +20,7 @@ Button::Button(
 	this->text.setFillColor(sf::Color::White);
 	this->text.setPosition(
 		shape.getPosition().x + (shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
-		shape.getPosition().y + (shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height / 2.f
+		shape.getPosition().y + (shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height
 	);
 
 	this->shape.setFillColor(this->idle);
@@ -64,6 +64,15 @@ void Button::Draw(sf::RenderTarget& target)
 {
 	target.draw(shape);
 	target.draw(text);
+}
+
+void Button::SetText(std::string str)
+{
+	text.setString(str);
+	this->text.setPosition(
+		shape.getPosition().x + (shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
+		shape.getPosition().y + (shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height
+	);
 }
 
 const bool Button::isPressed() const

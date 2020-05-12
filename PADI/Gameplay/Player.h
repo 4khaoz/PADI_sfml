@@ -11,6 +11,8 @@ public:
 	virtual void Update(const float& dt);
 	virtual void Draw(sf::RenderTarget& target);
 
+	virtual void TakeDamage();
+
 private:
 	void CheckBorders();
 
