@@ -5,28 +5,15 @@
 Player::Player(sf::Vector2f spawn)
 	: Character(spawn)
 {
-	if (!img.loadFromFile("..\\Resources\\placeholder.png"))
-		return;
-
-	// Transparent Sprite Background
-	img.createMaskFromColor(sf::Color::White);
-
-	if (!texture.loadFromImage(img))
-		return;
-
-	sprite.setTexture(texture);
+	sprite.setTexture(*g_Res->getTextureByName("jojo"));
 	sprite.setScale(
-		(float) 64 / texture.getSize().x,
-		(float) 64 / texture.getSize().y
+		(float) 40 / sprite.getTexture()->getSize().x,
+		(float) 64 / sprite.getTexture()->getSize().y
 	);
-	//sprite.setPosition(spawn);
 	sprite.setOrigin(
 		sprite.getTexture()->getSize().x / 2,
 		sprite.getTexture()->getSize().y / 2
 	);
-
-	sound.setBuffer(*g_Res->getSoundByName("ahh"));
-	sound.setVolume(100);
 
 	MovementSpeed = 250.f;
 	Health_Max = 5;
@@ -44,7 +31,6 @@ void Player::HandleEvents()
 
 	if (g_Input->isKeyPressed(sf::Keyboard::J))
 	{
-		std::cout << "J" << std::endl;
 		this->bAttacking = true;
 	}
 	if (!g_Input->isKeyPressed(sf::Keyboard::J))
@@ -54,6 +40,10 @@ void Player::HandleEvents()
 }
 
 void Player::Update(const float& dt)
+{
+}
+
+void Player::FixedUpdate(const float& dt)
 {
 	sprite.move(direction * MovementSpeed * dt);
 	CheckBorders();
@@ -67,9 +57,7 @@ void Player::Draw(sf::RenderTarget& target)
 void Player::TakeDamage()
 {
 	Character::TakeDamage();
-	sound.play();
-	if (sound.getStatus() == sf::Sound::Status::Playing)
-		std::cout << "player sound" << std::endl;
+	g_Res->playSoundByName("ahh", g_Res->getSFXVolume(), false);
 }
 
 void Player::CheckBorders()
@@ -102,11 +90,6 @@ sf::Vector2f Player::MovementInput()
 	if (g_Input->isKeyDown(sf::Keyboard::S))
 	{
 		direction += sf::Vector2f(0, 1);
-	}
-	if (g_Input->isKeyPressed(sf::Keyboard::Space))
-	{
-		std::cout << "X: " << sprite.getPosition().x << std::endl;
-		std::cout << "Y: " << sprite.getPosition().y << std::endl;
 	}
 
 	return direction;

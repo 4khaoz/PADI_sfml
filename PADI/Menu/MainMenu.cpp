@@ -6,7 +6,6 @@
 MainMenu::MainMenu(StateManager& sm, sf::RenderWindow* window)
 	: Menu(sm, window)
 {
-	//texture = g_Res->getTextureByName("background");
 	background.setTexture(*g_Res->getTextureByName("background"));
 	background.setScale(
 		(float) 1280 / background.getTexture()->getSize().x,
@@ -61,22 +60,23 @@ MainMenu::~MainMenu()
 
 void MainMenu::HandleEvents()
 {
-	if (buttons["Easy"]->isPressed())
+	if (buttons["Easy"]->isPressed() && getKeyTime())
 		sm.PushMenu(new GameInstance(sm, window, 0));
 
-	if (buttons["Normal"]->isPressed())
+	if (buttons["Normal"]->isPressed() && getKeyTime())
 		sm.PushMenu(new GameInstance(sm, window, 1));
 
-	if (buttons["Hard"]->isPressed())
+	if (buttons["Hard"]->isPressed() && getKeyTime())
 		sm.PushMenu(new GameInstance(sm, window, 2));
 
-	if (buttons["Quit"]->isPressed())
+	if (buttons["Quit"]->isPressed() && getKeyTime())
 		bQuit = true;
 }
 
 void MainMenu::Update(const float& dt)
 {
 	updateMousePosition();
+	updateKeyTime(dt);
 	for (auto it : buttons)
 		it.second->Update(mousePosView);
 }

@@ -10,6 +10,7 @@ public:
 
 	virtual void HandleEvents() = 0;
 	virtual void Update(const float& dt) = 0;
+	virtual void FixedUpdate(const float& dt) = 0;
 	virtual void Draw(sf::RenderTarget& target) = 0;
 
 	virtual bool checkCollision(Actor& other);
@@ -20,5 +21,4 @@ public:
 
 protected:
 	sf::Sprite sprite;
-	sf::Texture texture;
 };

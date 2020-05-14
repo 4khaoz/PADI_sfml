@@ -39,6 +39,10 @@ void Projectile::HandleEvents()
 
 void Projectile::Update(const float& dt)
 {
+}
+
+void Projectile::FixedUpdate(const float& dt)
+{
 	sprite.move(direction * dt * speed);
 }
 

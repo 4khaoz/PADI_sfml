@@ -11,6 +11,7 @@ public:
 
 	virtual void HandleEvents();
 	virtual void Update(const float& dt);
+	virtual void FixedUpdate(const float& dt);
 	virtual void Draw(sf::RenderTarget& target);
 
 	virtual bool isCharacterAttacking() { return bAttacking; }
@@ -27,8 +28,6 @@ protected:
 	bool bAttacking;
 	bool bAlive;
 	Map& map;
-	sf::Image img;
-	sf::Sound sound;
 
 	float Health_Current;
 	float Health_Max;

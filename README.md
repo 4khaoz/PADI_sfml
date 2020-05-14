@@ -9,10 +9,10 @@ Der Spieler kämpft in einer Arena gegen einen Boss in einem bullethell ähnlich
 Completed:
 - Singleplayer (C)
 - Menu (C)
+- Difficulty (C)
+- Sound (C)
 
 Work-in-Progress:
-- Sound (C)
-- Difficulty (C)
 - 3 Level (C)
 
 Optional:

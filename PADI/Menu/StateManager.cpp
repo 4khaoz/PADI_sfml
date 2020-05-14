@@ -24,6 +24,7 @@ void StateManager::PushMenu(Menu* menu)
 void StateManager::PopMenu()
 {
 	states.pop();
+	std::cout << "stack size: " << states.size() << std::endl;
 }
 
 void StateManager::ChangeMenu(Menu* menu)
@@ -56,6 +57,12 @@ void StateManager::Update(const float& dt)
 	{
 		window->close();
 	}
+}
+
+void StateManager::FixedUpdate(const float& dt)
+{
+	if (!states.empty())
+		states.top()->FixedUpdate(dt);
 }
 
 void StateManager::Draw()

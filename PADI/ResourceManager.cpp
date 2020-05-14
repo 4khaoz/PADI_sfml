@@ -3,6 +3,7 @@
 ResourceManager* g_Res;
 
 ResourceManager::ResourceManager()
+	: bgmVolume(30), sfxVolume(100)
 {
 	font = new sf::Font();
 	if (!font->loadFromFile("..\\Resources\\astron_boy.ttf"))
@@ -14,10 +15,15 @@ ResourceManager::ResourceManager()
 
 ResourceManager::~ResourceManager()
 {
-	for (auto it : sounds)
-	{
+	for (auto it : soundbuffers)
 		delete it.second;
-	}
+
+	for (auto it : textures)
+		delete it.second;
+
+	soundbuffers.clear();
+	textures.clear();
+	sounds.clear();
 }
 
 void ResourceManager::SaveSettings()
@@ -43,44 +49,21 @@ void ResourceManager::LoadSettings()
 
 void ResourceManager::LoadTextures()
 {
-	textures["background"] = new sf::Texture();
-	if (!textures["background"]->loadFromFile("..\\Resources\\background.png"))
-		std::cout << "Failed to load background texture" << std::endl;
-
-	textures["projectile"] = new sf::Texture();
-	if (!textures["projectile"]->loadFromFile("..\\Resources\\projectile.png"))
-		std::cout << "Failed to load projectiles texture" << std::endl;
-
-	textures["kappa"] = new sf::Texture();
-	if (!textures["kappa"]->loadFromFile("..\\Resources\\kappa.png"))
-		std::cout << "Failed to load map texture" << std::endl;
-
-	textures["map"] = new sf::Texture();
-	if (!textures["map"]->loadFromFile("..\\Resources\\set.png"))
-		std::cout << "Failed to load map texture" << std::endl;
+	LoadTexture("background", "..\\Resources\\background.png");
+	LoadTexture("projectile", "..\\Resources\\projectile.png");
+	LoadTexture("kappa", "..\\Resources\\kappa.png");
+	LoadTexture("map", "..\\Resources\\set.png");
+	LoadTexture("troll", "..\\Resources\\troll.png");
+	LoadTexture("jojo", "..\\Resources\\jojo.png");
 }
 
 void ResourceManager::LoadSounds()
 {
-	sounds["bgm"] = new sf::SoundBuffer();
-	if (!sounds["bgm"]->loadFromFile("..\\Resources\\bgm.wav"))
-		std::cout << "Failed to load bgm sound" << std::endl;
-	
-	sounds["clap"] = new sf::SoundBuffer();
-	if (!sounds["clap"]->loadFromFile("..\\Resources\\clap.wav"))
-		std::cout << "Failed to load clap sound" << std::endl;
-	
-	sounds["defeat"] = new sf::SoundBuffer();
-	if (!sounds["defeat"]->loadFromFile("..\\Resources\\wry.wav"))
-		std::cout << "Failed to load wry sound" << std::endl;
-
-	sounds["victory"] = new sf::SoundBuffer();
-	if (!sounds["victory"]->loadFromFile("..\\Resources\\coffin.wav"))
-		std::cout << "Failed to load wry sound" << std::endl;
-
-	sounds["ahh"] = new sf::SoundBuffer();
-	if (!sounds["ahh"]->loadFromFile("..\\Resources\\ahh.wav"))
-		std::cout << "" << std::endl;
+	LoadSound("bgm", "..\\Resources\\bgm.wav");
+	LoadSound("clap", "..\\Resources\\clap.wav");
+	LoadSound("defeat", "..\\Resources\\wry.wav");
+	LoadSound("victory", "..\\Resources\\coffin.wav");
+	LoadSound("ahh", "..\\Resources\\ahh.wav");
 }
 
 sf::Texture* ResourceManager::getTextureByName(std::string name)
@@ -88,7 +71,35 @@ sf::Texture* ResourceManager::getTextureByName(std::string name)
 	return textures[name];
 }
 
-sf::SoundBuffer* ResourceManager::getSoundByName(std::string name)
+void ResourceManager::playSoundByName(std::string name, int volume, bool loop)
 {
-	return sounds[name];
+	sounds[name].setVolume(volume);
+	sounds[name].setLoop(loop);
+	sounds[name].play();
+}
+
+void ResourceManager::stopSoundByName(std::string name)
+{
+	sounds[name].stop();
+}
+
+void ResourceManager::stopAllSounds()
+{
+	for (auto& it : sounds)
+		it.second.stop();
+}
+
+void ResourceManager::LoadTexture(std::string key, std::string filepath)
+{
+	textures[key] = new sf::Texture();
+	if (!textures[key]->loadFromFile(filepath))
+		std::cout << "Failed to load " << filepath << std::endl;
+}
+
+void ResourceManager::LoadSound(std::string key, std::string filepath)
+{
+	soundbuffers[key] = new sf::SoundBuffer();
+	if (!soundbuffers[key]->loadFromFile(filepath))
+		std::cout << "Failed to load " << filepath << std::endl;
+	sounds[key] = sf::Sound(*soundbuffers[key]);
 }

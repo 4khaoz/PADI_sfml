@@ -20,6 +20,10 @@ void Character::Update(const float& dt)
 	
 }
 
+void Character::FixedUpdate(const float& dt)
+{
+}
+
 void Character::Draw(sf::RenderTarget& target)
 {
 }

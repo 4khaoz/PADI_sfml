@@ -18,16 +18,15 @@ public:
 	GameInstance(StateManager& sm, sf::RenderWindow* window, int difficulty);
 	~GameInstance();
 
-	void HandleEvents();
-	void Update(const float& dt);
-	void Draw();
+	virtual void HandleEvents();
+	virtual void Update(const float& dt);
+	virtual void FixedUpdate(const float& dt);
+	virtual void Draw();
 
 private:
 	Map map;
 	sf::View view;
 	GameState gs;
-	sf::Sound endsound;
-	sf::Sound bgm;
 	bool bPlaying;
 	
 	// Actors
@@ -37,6 +36,7 @@ private:
 
 	void initUI();
 	void UpdateProjectiles(const float& dt);
+	void CheckGameState();
 
 	// GUI
 	ProgressBar* enemy_HPBar;

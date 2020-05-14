@@ -14,6 +14,7 @@ public:
 	
 	void HandleEvents();
 	void Update(const float& dt);
+	void FixedUpdate(const float& dt);
 	void Draw();
 
 	Menu* CurrentMenu() { return states.top(); }

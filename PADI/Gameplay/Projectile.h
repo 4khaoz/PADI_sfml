@@ -14,6 +14,7 @@ public:
 
 	virtual void HandleEvents();
 	virtual void Update(const float& dt);
+	virtual void FixedUpdate(const float& dt);
 	virtual void Draw(sf::RenderTarget& target);
 
 	virtual bool checkCollision(Actor& other);

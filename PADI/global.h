@@ -9,13 +9,14 @@
 #include <stack>
 
 const unsigned short PORT = 54000;
-const std::string TITLE = "PADI Project";
+const std::string TITLE = "PADIRO";
 
 #define WIN_WIDTH 1280
 #define WIN_HEIGHT 720
 #define WIN_FRAMECAP 60
 #define DELTA_MAX 0.15f
 #define KEYTIME 15.f
+#define FIXED_UPDATE_TIME 0.01f
 
 class InputManager;
 class ResourceManager;

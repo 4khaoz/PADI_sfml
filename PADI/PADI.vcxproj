@@ -140,6 +140,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu\GameInstance.cpp" />
     <ClCompile Include="Menu\MainMenu.cpp" />
+    <ClCompile Include="Menu\OptionsMenu.cpp" />
     <ClCompile Include="Menu\StateManager.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="UserInterface\Button.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Menu\GameInstance.h" />
     <ClInclude Include="Menu\MainMenu.h" />
     <ClInclude Include="Menu\Menu.h" />
+    <ClInclude Include="Menu\OptionsMenu.h" />
     <ClInclude Include="Menu\StateManager.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="UserInterface\Button.h" />
@@ -165,12 +167,21 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\background.png" />
+    <Image Include="..\Resources\kappa.png" />
     <Image Include="..\Resources\projectile.png" />
     <Image Include="..\Resources\set.png" />
+    <Image Include="..\Resources\trollface.png" />
     <Image Include="..\res\placeholder.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\Resources\astron_boy.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Resources\ahh.wav" />
+    <Media Include="..\Resources\bgm.wav" />
+    <Media Include="..\Resources\clap.wav" />
+    <Media Include="..\Resources\coffin.wav" />
+    <Media Include="..\Resources\wry.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

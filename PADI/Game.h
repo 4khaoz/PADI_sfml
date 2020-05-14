@@ -19,5 +19,4 @@ private:
 	float dt;
 
 	void HandleEvents();
-	void SetDeltaTime();
 };

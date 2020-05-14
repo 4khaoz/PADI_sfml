@@ -78,6 +78,9 @@
     <ClCompile Include="UserInterface\ProgressBar.cpp">
       <Filter>Source Files\UserInterface</Filter>
     </ClCompile>
+    <ClCompile Include="Menu\OptionsMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="global.h">
@@ -128,6 +131,9 @@
     <ClInclude Include="UserInterface\ProgressBar.h">
       <Filter>Header Files\UserInterface</Filter>
     </ClInclude>
+    <ClInclude Include="Menu\OptionsMenu.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\res\placeholder.jpg">
@@ -142,10 +148,33 @@
     <Image Include="..\Resources\background.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\Resources\kappa.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\Resources\trollface.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\Resources\astron_boy.ttf">
       <Filter>Resource Files</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Resources\ahh.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\Resources\bgm.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\Resources\clap.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\Resources\coffin.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="..\Resources\wry.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

@@ -21,10 +21,7 @@ GameInstance::GameInstance(StateManager& sm, sf::RenderWindow* window, int diffi
 
 	initUI();
 
-	bgm.setBuffer(*g_Res->getSoundByName("bgm"));
-	bgm.play();
-	bgm.setLoop(true);
-	bgm.setVolume(30);
+	g_Res->playSoundByName("bgm", g_Res->getBGMVolume(), true);
 }
 
 GameInstance::~GameInstance()
@@ -37,13 +34,15 @@ GameInstance::~GameInstance()
 	delete enemy_HPBar;
 	delete player_HPBar;
 	delete endButton;
-	bgm.stop();
 }
 
 void GameInstance::HandleEvents()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || (endButton->isPressed() && getKeyTime()))
+	{
+		g_Res->stopAllSounds();
 		sm.PopMenu();
+	}
 
 	player->HandleEvents();
 	enemy->HandleEvents();
@@ -53,43 +52,37 @@ void GameInstance::HandleEvents()
 	if (enemy->isCharacterAttacking())
 		this->projectiles.push_back(new Projectile(enemy->getPosition(), sf::Vector2f(-1, 0), 325.f, dynamic_cast<Actor&>(*enemy)));
 
-	if (endButton->isPressed())
-		sm.PopMenu();
 }
 
 void GameInstance::Update(const float& dt)
 {
+	updateKeyTime(dt);
 	if (bPlaying)
 	{
 		player->Update(dt);
 		enemy->Update(dt);
-	
-		UpdateProjectiles(dt);
 
 		enemy_HPBar->Update(enemy->GetHealth());
 		player_HPBar->Update(player->GetHealth());
-		if (!enemy->isAlive())
-		{
-			gs = GameState::VICTORY;
-			bPlaying = false;
-			endsound.setBuffer(*g_Res->getSoundByName("victory"));
-			endsound.play();
-			endButton->SetText("VICTORY");
-		}
-		if (!player->isAlive())
-		{
-			gs = GameState::DEFEAT;
-			bPlaying = false;
-			endsound.setBuffer(*g_Res->getSoundByName("defeat"));
-			endsound.play();
-			endButton->SetText("DEFEAT");
-		}
+
+		CheckGameState();
 	}
 	else
 	{
 		projectiles.clear();
 		updateMousePosition();
 		endButton->Update(mousePosView);
+	}
+}
+
+void GameInstance::FixedUpdate(const float& dt)
+{
+	if (bPlaying)
+	{
+		player->FixedUpdate(dt);
+		enemy->FixedUpdate(dt);
+	
+		UpdateProjectiles(dt);
 	}
 }
 
@@ -136,8 +129,8 @@ void GameInstance::initUI()
 		sf::Vector2f((WIN_WIDTH / 2) - 200, (WIN_HEIGHT / 2) - 50),
 		sf::Vector2f(400, 100),
 		"", 60,
-		sf::Color(150, 150, 150, 255),
 		sf::Color(70, 70, 70, 200),
+		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200)
 	);
 }
@@ -146,7 +139,7 @@ void GameInstance::UpdateProjectiles(const float& dt)
 {
 	for (auto it : projectiles)
 	{
-		it->Update(dt);
+		it->FixedUpdate(dt);
 
 		// Check for enemy hit
 		if (it->checkCollision(dynamic_cast<Actor&>(*enemy)))
@@ -166,6 +159,27 @@ void GameInstance::UpdateProjectiles(const float& dt)
 		if (it->getPosition().x > WIN_WIDTH || it->getPosition().x < 0)
 		{
 			projectiles.erase(std::remove(projectiles.begin(), projectiles.end(), it), projectiles.end());
+		}
+	}
+}
+
+void GameInstance::CheckGameState()
+{
+	if (!enemy->isAlive() || !player->isAlive())
+	{
+		bPlaying = false;
+		g_Res->stopSoundByName("bgm");
+		if (!enemy->isAlive())
+		{
+			gs = GameState::VICTORY;
+			g_Res->playSoundByName("victory", g_Res->getBGMVolume(), false);
+			endButton->SetText("VICTORY");
+		}
+		if (!player->isAlive())
+		{
+			gs = GameState::DEFEAT;
+			g_Res->playSoundByName("defeat", g_Res->getBGMVolume(), false);
+			endButton->SetText("DEFEAT");
 		}
 	}
 }

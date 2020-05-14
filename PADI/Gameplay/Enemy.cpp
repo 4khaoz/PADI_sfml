@@ -5,26 +5,20 @@ Enemy::Enemy(sf::Vector2f spawn, int difficulty)
 {
 	initDifficulty(difficulty);
 
-	if (!img.loadFromFile("../Resources/trollface.png"))
-		return;
-
-	img.createMaskFromColor(sf::Color::White);
-	texture.loadFromImage(img);
-	sprite.setTexture(texture);
+	sprite.setTexture(*g_Res->getTextureByName("troll"));
 
 	sprite.setScale(
-		(float)300 / texture.getSize().x,
-		(float)300 / texture.getSize().y
+		(float)300 / sprite.getTexture()->getSize().x,
+		(float)240 / sprite.getTexture()->getSize().y
 	);
 	sprite.setOrigin(
 		sprite.getTexture()->getSize().x / 2,
 		sprite.getTexture()->getSize().y / 2
 	);
 
-	sound.setBuffer(*g_Res->getSoundByName("clap"));
-	sound.setVolume(100);
-
 	direction = sf::Vector2f(0, 1);
+	rotator = 1.f;
+	rotationspeed = 60.f;
 
 	srand((unsigned int)time(NULL));
 
@@ -41,12 +35,16 @@ void Enemy::HandleEvents()
 
 void Enemy::Update(const float& dt)
 {
-	Move(dt);
-
 	Attack();
 
 	if (bCanRegenerate)
 		Regenerate();
+}
+
+void Enemy::FixedUpdate(const float& dt)
+{
+	Move(dt);
+	SimpleRotatorAnimation(dt);
 }
 
 void Enemy::Draw(sf::RenderTarget& target)
@@ -58,7 +56,7 @@ void Enemy::TakeDamage()
 {
 	Character::TakeDamage();
 
-	sound.play();
+	g_Res->playSoundByName("clap", g_Res->getSFXVolume(), false);
 }
 
 void Enemy::initDifficulty(int d)
@@ -123,4 +121,18 @@ void Enemy::Regenerate()
 		Health_Current = fClamp(Health_Current + HP_Regeneration, Health_Current, Health_Max);
 		hp_reg_clock.restart();
 	}
+}
+
+void Enemy::SimpleRotatorAnimation(const float& dt)
+{
+	if (sprite.getRotation() > 15.f && rotator == 1.f)
+	{
+		rotator = -1.f;
+	} 
+	else if (sprite.getRotation() > 330.f && rotator == -1.f)
+	{
+		rotator = 1.f;
+	}
+
+	sprite.rotate(rotator * rotationspeed * dt);
 }

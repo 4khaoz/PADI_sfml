@@ -23,10 +23,20 @@ Game::~Game()
 
 void Game::run()
 {
+	float accumulator = 0.f;
 	while (window->isOpen())
 	{
-		SetDeltaTime();
-		HandleEvents();
+		dt = clock.restart().asSeconds();
+		accumulator += dt;
+
+		if (window->hasFocus())
+			HandleEvents();
+
+		while (accumulator >= FIXED_UPDATE_TIME)
+		{
+			sm->FixedUpdate(FIXED_UPDATE_TIME);
+			accumulator -= FIXED_UPDATE_TIME;
+		}
 
 		sm->Update(dt);
 		window->clear();
@@ -54,13 +64,4 @@ void Game::HandleEvents()
 		}
 	}
 	sm->HandleEvents();
-}
-
-void Game::SetDeltaTime()
-{
-	dt = clock.restart().asSeconds();
-	if (dt > DELTA_MAX)
-	{
-		dt = DELTA_MAX;
-	}
 }

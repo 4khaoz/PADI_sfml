@@ -11,11 +11,11 @@ public:
 
 	virtual void HandleEvents();
 	virtual void Update(const float& dt);
+	virtual void FixedUpdate(const float& dt) { }
 	virtual void Draw();
 
 private:
 	std::map<std::string, Button*> buttons;
-	sf::Texture texture;
 	sf::Sprite background;
 	sf::RectangleShape shape;
 };

@@ -9,6 +9,7 @@ public:
 
 	virtual void HandleEvents();
 	virtual void Update(const float& dt);
+	virtual void FixedUpdate(const float& dt);
 	virtual void Draw(sf::RenderTarget& target);
 
 	virtual void TakeDamage();
@@ -23,9 +24,12 @@ private:
 	bool bCanRegenerate;
 
 	sf::Vector2f direction;
+	float rotator;
+	float rotationspeed;
 
 	void initDifficulty(int d);
 	void Move(const float& dt);
 	void Attack();
 	void Regenerate();
+	void SimpleRotatorAnimation(const float& dt);
 };
