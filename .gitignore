@@ -12,7 +12,7 @@ Release
 *.ncb
 ipch
 *sdf
-
+.vs/*
 
 # Executable
 *.exe
