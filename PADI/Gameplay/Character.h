@@ -1,20 +1,18 @@
 #pragma once
 #include "Actor.h"
 
-class Map;
+class GameInstance;
 
 class Character : public Actor
 {
 public:
-	Character(sf::Vector2f spawn);
+	Character(sf::Vector2f spawn, GameInstance& ref);
 	~Character();
-
+	
 	virtual void HandleEvents();
 	virtual void Update(const float& dt);
 	virtual void FixedUpdate(const float& dt);
 	virtual void Draw(sf::RenderTarget& target);
-
-	virtual bool isCharacterAttacking() { return bAttacking; }
 
 	virtual void TakeDamage();
 
@@ -25,10 +23,10 @@ public:
 	bool isAlive() { return bAlive; }
 
 protected:
-	bool bAttacking;
 	bool bAlive;
-	Map& map;
 
 	float Health_Current;
 	float Health_Max;
+
+	GameInstance& gameinstanceref;
 };

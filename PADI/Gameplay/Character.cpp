@@ -1,9 +1,8 @@
 #include "Character.h"
 
-Character::Character(sf::Vector2f spawn)
-	: Actor(spawn), map(map)
+Character::Character(sf::Vector2f spawn, GameInstance& ref)
+	: Actor(spawn), gameinstanceref(ref)//, map(map)
 {
-	bAttacking = false;
 	bAlive = true;
 }
 

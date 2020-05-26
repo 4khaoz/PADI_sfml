@@ -23,6 +23,8 @@ public:
 	virtual void FixedUpdate(const float& dt);
 	virtual void Draw();
 
+	void SpawnProjectile(sf::Vector2f pos, sf::Vector2f direction, float speed, Actor& owner, std::string texturename);
+
 private:
 	Map map;
 	sf::View view;

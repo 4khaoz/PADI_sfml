@@ -8,7 +8,8 @@ public:
 		sf::Vector2f spawn, 
 		sf::Vector2f direction,
 		float speed,
-		Actor& instigator
+		Actor& instigator,
+		std::string texturename
 	);
 	~Projectile();
 

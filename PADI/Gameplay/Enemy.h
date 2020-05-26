@@ -4,7 +4,7 @@
 class Enemy : public Character
 {
 public:
-	Enemy(sf::Vector2f spawn, int difficulty);
+	Enemy(sf::Vector2f spawn, GameInstance& ref, int difficulty);
 	~Enemy();
 
 	virtual void HandleEvents();
@@ -22,6 +22,7 @@ private:
 	float fHPRegTimer;
 	float HP_Regeneration;
 	bool bCanRegenerate;
+	bool bAttackFromAbove;
 
 	sf::Vector2f direction;
 	float rotator;

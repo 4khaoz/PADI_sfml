@@ -11,10 +11,10 @@ GameInstance::GameInstance(StateManager& sm, sf::RenderWindow* window, int diffi
 
 	window->setView(view);
 
-	player = new Player(map.getPlayerspawn());
+	player = new Player(map.getPlayerspawn(), *this);
 
 	difficulty = iClamp(difficulty, 0, 2);
-	enemy = new Enemy(map.getEnemyspawn(), difficulty);
+	enemy = new Enemy(map.getEnemyspawn(), *this, difficulty);
 
 	gs = GameState::PLAYING;
 	bPlaying = true;
@@ -46,12 +46,6 @@ void GameInstance::HandleEvents()
 
 	player->HandleEvents();
 	enemy->HandleEvents();
-	if (player->isCharacterAttacking())
-		this->projectiles.push_back(new Projectile(player->getPosition(), sf::Vector2f(1, 0), 400.f, dynamic_cast<Actor&>(*player)));
-
-	if (enemy->isCharacterAttacking())
-		this->projectiles.push_back(new Projectile(enemy->getPosition(), sf::Vector2f(-1, 0), 325.f, dynamic_cast<Actor&>(*enemy)));
-
 }
 
 void GameInstance::Update(const float& dt)
@@ -105,6 +99,11 @@ void GameInstance::Draw()
 	// Draw User Interface
 	enemy_HPBar->Draw(*window);
 	player_HPBar->Draw(*window);
+}
+
+void GameInstance::SpawnProjectile(sf::Vector2f pos, sf::Vector2f direction, float speed, Actor& owner, std::string texturename)
+{
+	this->projectiles.push_back(new Projectile(pos, direction, speed, owner, texturename));
 }
 
 void GameInstance::initUI()

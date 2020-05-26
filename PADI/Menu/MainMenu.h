@@ -17,5 +17,4 @@ public:
 private:
 	std::map<std::string, Button*> buttons;
 	sf::Sprite background;
-	sf::RectangleShape shape;
 };

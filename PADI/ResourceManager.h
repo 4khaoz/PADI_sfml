@@ -22,6 +22,15 @@ public:
 
 	sf::Font* getFont() { return font; }
 
+	/*
+	i = Volume Level
+	0 -> Low
+	1 -> Medium
+	2 -> High
+	*/
+	void setBGMVolume(int i);
+	void setSFXVolume(int i);
+
 	int getBGMVolume() { return bgmVolume; }
 	int getSFXVolume() { return sfxVolume; }
 

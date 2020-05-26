@@ -50,10 +50,14 @@ void ResourceManager::LoadSettings()
 void ResourceManager::LoadTextures()
 {
 	LoadTexture("background", "..\\Resources\\background.png");
+	LoadTexture("optionsbackground", "..\\Resources\\optionsbackground.png");
 	LoadTexture("projectile", "..\\Resources\\projectile.png");
 	LoadTexture("kappa", "..\\Resources\\kappa.png");
 	LoadTexture("map", "..\\Resources\\set.png");
 	LoadTexture("troll", "..\\Resources\\troll.png");
+	LoadTexture("knuckles", "..\\Resources\\knuckles.png");
+	LoadTexture("sponge", "..\\Resources\\sponge.png");
+	LoadTexture("ayaya", "..\\Resources\\ayaya.png");
 	LoadTexture("jojo", "..\\Resources\\jojo.png");
 }
 
@@ -87,6 +91,22 @@ void ResourceManager::stopAllSounds()
 {
 	for (auto& it : sounds)
 		it.second.stop();
+}
+
+void ResourceManager::setBGMVolume(int i)
+{
+	i = iClamp(i, 0, 2);
+	if (i == 0) bgmVolume = 30;
+	if (i == 1) bgmVolume = 65;
+	if (i == 2) bgmVolume = 100;
+}
+
+void ResourceManager::setSFXVolume(int i)
+{
+	i = iClamp(i, 0, 2);
+	if (i == 0) sfxVolume = 30;
+	if (i == 1) sfxVolume = 65;
+	if (i == 2) sfxVolume = 100;
 }
 
 void ResourceManager::LoadTexture(std::string key, std::string filepath)

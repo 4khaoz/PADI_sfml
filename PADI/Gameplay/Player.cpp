@@ -1,9 +1,10 @@
 #include "Player.h"
 #include "../InputManager.h"
 #include "Map.h"
+#include "../Menu/GameInstance.h"
 
-Player::Player(sf::Vector2f spawn)
-	: Character(spawn)
+Player::Player(sf::Vector2f spawn, GameInstance& ref)
+	: Character(spawn, ref)
 {
 	sprite.setTexture(*g_Res->getTextureByName("jojo"));
 	sprite.setScale(
@@ -30,13 +31,7 @@ void Player::HandleEvents()
 	direction = MovementInput();
 
 	if (g_Input->isKeyPressed(sf::Keyboard::J))
-	{
-		this->bAttacking = true;
-	}
-	if (!g_Input->isKeyPressed(sf::Keyboard::J))
-	{
-		this->bAttacking = false;
-	}
+		gameinstanceref.SpawnProjectile(getPosition(), sf::Vector2f(1, 0), 400.f, dynamic_cast<Actor&>(*this), "projectile");
 }
 
 void Player::Update(const float& dt)

@@ -4,7 +4,7 @@
 class Player : public Character
 {
 public:
-	Player(sf::Vector2f spawn);
+	Player(sf::Vector2f spawn, GameInstance& ref);
 	~Player();
 
 	virtual void HandleEvents();

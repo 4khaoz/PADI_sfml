@@ -79,7 +79,7 @@
       <Filter>Source Files\UserInterface</Filter>
     </ClCompile>
     <ClCompile Include="Menu\OptionsMenu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

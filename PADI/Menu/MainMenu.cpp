@@ -2,6 +2,7 @@
 #include "../ResourceManager.h"
 #include "StateManager.h"
 #include "GameInstance.h"
+#include "OptionsMenu.h"
 
 MainMenu::MainMenu(StateManager& sm, sf::RenderWindow* window)
 	: Menu(sm, window)
@@ -14,8 +15,8 @@ MainMenu::MainMenu(StateManager& sm, sf::RenderWindow* window)
 	background.setPosition(0, 0);
 
 	buttons["Easy"] = new Button(
-		sf::Vector2f(750, 375),
-		sf::Vector2f(200, 50),
+		sf::Vector2f(700, 375),
+		sf::Vector2f(150, 50),
 		"Pleb", 24,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
@@ -23,8 +24,8 @@ MainMenu::MainMenu(StateManager& sm, sf::RenderWindow* window)
 	);
 
 	buttons["Normal"] = new Button(
-		sf::Vector2f(750, 450),
-		sf::Vector2f(200, 50),
+		sf::Vector2f(700, 450),
+		sf::Vector2f(150, 50),
 		"Normie", 24,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
@@ -32,17 +33,26 @@ MainMenu::MainMenu(StateManager& sm, sf::RenderWindow* window)
 	);
 
 	buttons["Hard"] = new Button(
-		sf::Vector2f(750, 525),
-		sf::Vector2f(200, 50),
+		sf::Vector2f(700, 525),
+		sf::Vector2f(150, 50),
 		"Tryhard", 24,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
 		sf::Color(20, 20, 20, 200)
 	);
 
+	buttons["Options"] = new Button(
+		sf::Vector2f(900, 450),
+		sf::Vector2f(150, 50),
+		"Options", 24,
+		sf::Color(70, 70, 70, 200),
+		sf::Color(150, 150, 150, 255),
+		sf::Color(20, 20, 20, 200)
+	);
+
 	buttons["Quit"] = new Button(
-		sf::Vector2f(750, 600),
-		sf::Vector2f(200, 50),
+		sf::Vector2f(1100, 650),
+		sf::Vector2f(150, 50),
 		"Quit", 24,
 		sf::Color(70, 70, 70, 200),
 		sf::Color(150, 150, 150, 255),
@@ -53,9 +63,7 @@ MainMenu::MainMenu(StateManager& sm, sf::RenderWindow* window)
 MainMenu::~MainMenu()
 {
 	for (auto it : buttons)
-	{
 		delete it.second;
-	}
 }
 
 void MainMenu::HandleEvents()
@@ -68,6 +76,9 @@ void MainMenu::HandleEvents()
 
 	if (buttons["Hard"]->isPressed() && getKeyTime())
 		sm.PushMenu(new GameInstance(sm, window, 2));
+
+	if (buttons["Options"]->isPressed() && getKeyTime())
+		sm.PushMenu(new OptionsMenu(sm, window));
 
 	if (buttons["Quit"]->isPressed() && getKeyTime())
 		bQuit = true;

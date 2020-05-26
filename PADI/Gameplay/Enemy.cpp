@@ -1,11 +1,10 @@
 #include "Enemy.h"
+#include "../Menu/GameInstance.h"
 
-Enemy::Enemy(sf::Vector2f spawn, int difficulty)
-	: Character(spawn)
+Enemy::Enemy(sf::Vector2f spawn, GameInstance& ref, int difficulty)
+	: Character(spawn, ref)
 {
 	initDifficulty(difficulty);
-
-	sprite.setTexture(*g_Res->getTextureByName("troll"));
 
 	sprite.setScale(
 		(float)300 / sprite.getTexture()->getSize().x,
@@ -64,18 +63,24 @@ void Enemy::initDifficulty(int d)
 	switch (d)
 	{
 	case 0:
+		sprite.setTexture(*g_Res->getTextureByName("troll"));
 		Health_Max = 250;
-		bCanRegenerate = false;
+		bCanRegenerate = false; 
+		bAttackFromAbove = false;
 		break;
 	case 1:
+		sprite.setTexture(*g_Res->getTextureByName("knuckles"));
 		Health_Max = 350;
 		bCanRegenerate = true;
+		bAttackFromAbove = false;
 		fHPRegTimer = 5.f;
 		HP_Regeneration = 2.f;
 		break;
 	case 2:
+		sprite.setTexture(*g_Res->getTextureByName("sponge"));
 		Health_Max = 500;
 		bCanRegenerate = true;
+		bAttackFromAbove = true;
 		fHPRegTimer = 5.f;
 		HP_Regeneration = 5.f;
 		break;
@@ -102,14 +107,19 @@ void Enemy::Move(const float& dt)
 
 void Enemy::Attack()
 {
-	if (bAttacking)
+	if (atk_clock.getElapsedTime().asSeconds() > fAttackTimer)
 	{
-		bAttacking = false;
-	}
-	if (!bAttacking && atk_clock.getElapsedTime().asSeconds() > fAttackTimer)
-	{
+		gameinstanceref.SpawnProjectile(getPosition(), sf::Vector2f(-1, 0), 325.f, dynamic_cast<Actor&>(*this), "kappa");
+		if (bAttackFromAbove)
+		{
+			for (int i = 0; i < 3; ++i)
+			{
+				float rnd = ((float)rand()) / (float)RAND_MAX * getPosition().x;
+				gameinstanceref.SpawnProjectile(sf::Vector2f(rnd, 0), sf::Vector2f(0, 1), 325.f, dynamic_cast<Actor&>(*this), "ayaya");
+			}
+		}
+
 		fAttackTimer = float(rand()) / float((RAND_MAX) * 5) + 1.f;
-		bAttacking = true;
 		atk_clock.restart();
 	}
 }

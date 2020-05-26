@@ -2,12 +2,12 @@
 #include "Enemy.h"
 #include "Player.h"
 
-Projectile::Projectile(sf::Vector2f spawn, sf::Vector2f direction, float speed, Actor& instigator) 
+Projectile::Projectile(sf::Vector2f spawn, sf::Vector2f direction, float speed, Actor& instigator, std::string texturename) 
 	: Actor(spawn), direction(direction), instigator(instigator), speed(speed)
 {
+	sprite.setTexture(*g_Res->getTextureByName(texturename));
 	if (dynamic_cast<Enemy*>(&instigator))
 	{
-		sprite.setTexture(*g_Res->getTextureByName("kappa"));
 		sprite.setScale(
 			(float)70 / sprite.getTexture()->getSize().x,
 			(float)90 / sprite.getTexture()->getSize().y
@@ -15,7 +15,7 @@ Projectile::Projectile(sf::Vector2f spawn, sf::Vector2f direction, float speed, 
 	}
 	else
 	{
-		sprite.setTexture(*g_Res->getTextureByName("projectile"));
+		//sprite.setTexture(*g_Res->getTextureByName("projectile"));
 		sprite.setScale(
 			(float) 50 / sprite.getTexture()->getSize().x,
 			(float) 20 / sprite.getTexture()->getSize().y
