@@ -1,3 +1,10 @@
+# Vorstellung
+Termin: Freitag,
+Position: 2,
+Geschätze Uhrzeit: 13:25
+
+Note: tba
+
 # SoSe2020_Padi07
 # Padiro
 
