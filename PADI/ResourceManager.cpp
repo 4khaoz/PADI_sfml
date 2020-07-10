@@ -31,6 +31,9 @@ void ResourceManager::SaveSettings()
 	std::ofstream settingsfile;
 	settingsfile.open("settings.cfg");
 
+	def_settings["bgm"] = bgmVolume;
+	def_settings["sfx"] = sfxVolume;
+
 	// Loop through all settings 
 	// to write into file
 	for (auto it = def_settings.rbegin(); it != def_settings.rend(); it++)
@@ -39,12 +42,29 @@ void ResourceManager::SaveSettings()
 		settingsfile << line;
 	}
 
+	std::cout << "Settings saved" << std::endl;
 	settingsfile.close();
 }
 
 void ResourceManager::LoadSettings()
 {
+	std::ifstream settingsfile;
+	settingsfile.open("settings.cfg");
 
+	std::string line;
+	while (std::getline(settingsfile, line))
+	{
+		std::string token = line.substr(0, line.find(":"));
+		std::string value = line.substr(line.find(":") + 1, line.length());
+
+		if (token == "bgm")
+			bgmVolume = std::stoi(value);
+		if (token == "sfx")
+			sfxVolume = std::stoi(value);
+	}
+
+	std::cout << "Settings loaded" << std::endl;
+	settingsfile.close();
 }
 
 void ResourceManager::LoadTextures()

@@ -1,9 +1,12 @@
 #include "Game.h"
+#include "ResourceManager.h"
 
 Game::Game()
 {
 	this->vidmode.width = WIN_WIDTH;
 	this->vidmode.height = WIN_HEIGHT;
+
+	g_Res->LoadSettings();
 
 	window = new sf::RenderWindow(this->vidmode, TITLE, sf::Style::Titlebar | sf::Style::Close);
 

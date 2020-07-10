@@ -35,6 +35,12 @@ public:
 	int getSFXVolume() { return sfxVolume; }
 
 private:
+	std::map<std::string, int> def_settings
+	{
+		{"sfx", 100},
+		{"bgm", 30}
+	};
+
 	sf::Font* font;
 
 	int sndIndex;
@@ -52,11 +58,4 @@ private:
 
 	void LoadTexture(std::string key, std::string filepath);
 	void LoadSound(std::string key, std::string filepath);
-};
-
-const std::map<std::string, int> def_settings
-{
-	{"width", 1280},
-	{"height", 720},
-	{"fpscap", 60}
 };

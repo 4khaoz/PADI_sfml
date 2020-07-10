@@ -66,6 +66,15 @@ OptionsMenu::OptionsMenu(StateManager& sm, sf::RenderWindow* window)
 		sf::Color(20, 20, 20, 200)
 	);
 
+	buttons["Save"] = new Button(
+		sf::Vector2f(1100, 575),
+		sf::Vector2f(150, 50),
+		"Save", 24,
+		sf::Color(70, 70, 70, 200),
+		sf::Color(150, 150, 150, 255),
+		sf::Color(20, 20, 20, 200)
+	);
+
 	buttons["Back"] = new Button(
 		sf::Vector2f(1100, 650),
 		sf::Vector2f(150, 50),
@@ -101,6 +110,8 @@ void OptionsMenu::HandleEvents()
 	if (buttons["BGM_High"]->isPressed() && getKeyTime())
 		g_Res->setBGMVolume(2);
 
+	if (buttons["Save"]->isPressed() && getKeyTime())
+		g_Res->SaveSettings();
 	if (buttons["Back"]->isPressed() && getKeyTime())
 		sm.PopMenu();
 }
