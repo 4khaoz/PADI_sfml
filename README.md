@@ -1,16 +1,9 @@
-# Vorstellung
-Termin: Freitag,
-Position: 2,
-Geschätze Uhrzeit: 13:25
-
-Note: tba
-
-# SoSe2020_Padi07
+# SoSe2020_Padi
 # Padiro
 
 ## Details
-Padiro ist ein 2D Boss Battle RPG.
-Der Spieler kämpft in einer Arena gegen einen Boss in einem bullethell ähnlichem Scenario.
+Padiro is a 2D Boss Battle RPG.
+Player fights against an enemy in a simple bullethell-like gameplay.
 
 ## Features
 Completed:
@@ -25,17 +18,3 @@ Completed:
 - Sound (C)  
 	-> Background Music  
 	-> Sound Effects
-
-Work-in-Progress:
-- 3 Level (C)  
-	-> current thoughts: prob scrapping, weil es nur background ändern wäre
-
-Optional:
-- Save/Load Game Progress (C)  
-	-> current thoughts: what to save?
-- Character Development (A)  
-	-> current thoughts: how if it is not an RPG?
-- OS-independent  
-	-> current thoughts: durch sfml gegeben? VM zum testen?
-- Controller  
-	-> current thoughts: wenn ich lust habe
